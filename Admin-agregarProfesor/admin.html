@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>System</title>
+    <link href="../materialize/css/materialize.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+
+    <!--<link rel="stylesheet" href="../css/admin.css">-->
+
+
+    <script src="../js/libs/jquery-3.6.4.min.js"></script>
+    <script src="../materialize/js/materialize.min.js"></script>
+    <script src="../js/libs/justValidate.js"></script>
+    <script src="../js/libs/sweetAlert.min.js"></script>
+
+    <script src="../js/validateNavMenu_admin.js"></script>
+    <script src="../js/filterMaterialize_admin.js"></script>
+    <script src="../js/addDocente.js"></script>
+</head>
+
+<body>
+
+    <div class="row">
+
+        <nav class="nav-extended">
+            <div class="nav-wrapper">
+                <a href="#" class="brand-logo">Administrador</a>
+                <a href="#" data-target="mobile-demo" class="sidenav-trigger"><i class="material-icons">menu</i></a>
+                <ul id="nav-mobile" class="right hide-on-med-and-down">
+                    <li><a href="sass.html">Sass</a></li>
+                    <li><a href="badges.html">Components</a></li>
+                    <li><a href="collapsible.html">JavaScript</a></li>
+                </ul>
+            </div>
+            <div class="nav-content">
+                <ul class="tabs tabs-transparent">
+                    <li class="tab"><a href="#encuesta" class="active">Información de la Encuesta</a></li>
+                    <li class="tab"><a href="#docente">Administrar Docentes</a></li>
+                    <li class="tab"><a href="#test3">Reportes</a></li>
+                </ul>
+            </div>
+        </nav>
+    </div>
+
+    <div id="encuesta">
+        <div class="row">
+            <form class="col s12">
+                <div class="row">
+                    <div class="input-field col s12 m6 s6">
+                        <i class="material-icons prefix">search</i>
+                        <textarea id="icon_prefix2" class="materialize-textarea" onkeyup="myFunction()"></textarea>
+                        <label for="icon_prefix2">Filtrar</label>
+                    </div>
+                    <div class="col s12 m6 s6">
+                        <button type="button" id="reload" class="waves-effect waves-teal btn-flat">Cargar
+                            Profesores</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+        <div class="row">
+            <table id="dataSurvey" class="striped responsive-table">
+                <thead>
+                    <tr>
+                        <th>Nombre</th>
+                        <th>Departamento</th>
+                        <th>Encuesta</th>
+                        <th>Restablecer Encuesta</th>
+                        <th>Generar PDF</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <!--DATOS DE SERVIDOR-->
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <div id="docente">
+        <div class="row">
+            <div class="row">
+                <nav class="nav-extended">
+                    <div class="nav-content ">
+                        <ul class="tabs tabs-transparent ">
+                            <li class="tab"><a href="#add" class="active">Agregar Docente</a></li>
+                            <li class="tab"><a href="#allowed">Restringir Acesso</a></li>
+                            <li class="tab"><a href="#editar">Editar Docente</a></li>
+                        </ul>
+                    </div>
+                </nav>
+            </div>
+        </div>
+        <div id="add">
+            <!--AGREGAR PROFESOR-->
+            <div id="contenedor">
+                <div id="central" class="center-align">
+                    <div id="login" class="z-depth-5">
+                        <form class="col s12" id="addTeacher">
+                            <div class="row">
+                                <div class="input-field col s12 m2">
+                                    <input id="first_name" type="text" name="nombre">
+                                    <label for="first_name">Primer Nombre</label>
+                                </div>
+                                <div class="input-field col s12 m2">
+                                    <input id="last_name" type="text" name="primerApellido">
+                                    <label for="last_name">Apellido Paterno</label>
+                                </div>
+                                <div class="input-field col s12 m2">
+                                    <input id="last_name_materno" type="text" name="segundoApellido">
+                                    <label for="last_name_materno">Apellido Materno</label>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="input-field col s6 m4 l2">
+                                    <input id="clave" type="text" class="validate" name="numeroEmpleado">
+                                    <label for="clave">Numero de Empleado</label>
+                                </div>
+                                <div class="input-field col s6 m4 l2">
+                                    <input id="claveDepto" type="text" class="validate" name="claveDepto">
+                                    <label for="claveDepto">Departamento</label>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="input-field col s6 m3">
+                                    <input id="email" type="email" class="validate" name="correo">
+                                    <label for="email">Email</label>
+                                </div>
+                                <div class="input-field col s6 m2">
+                                    <input id="password" type="password" class="validate" name="contrasena">
+                                    <label for="password">Password</label>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="s12">
+
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="s9 m4 l8">
+                                    <label>
+                                        <input type="checkbox" name="encuesta" value="1">
+                                        <span>Encuesta realizada</span>
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <label>
+                                    <input name="group1" type="radio" checked name="rol">
+                                    <span>Administrador </span>
+                                </label>
+                                <label>
+                                    <input name="group1" type="radio"  name="rol">
+                                    <span>Docente</span>
+                                </label>
+                            </div>
+                            <div class="row">
+                                <button class="btn waves-effect waves-light" type="submit" name="action">Agregar
+                                    Profesor</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="allowed">
+        <p>como</p>
+    </div>
+    <div id="editar">
+        <p>quetal</p>
+    </div>
+    </div>
+
+    <div id="test3">
+        <p>Hola</p>
+    </div>
+
+
+
+    <!----->
+    <script src="../js/filter.js"></script>
+    <script src="../js/encuesta.js"></script>
+</body>
+
+</html>
