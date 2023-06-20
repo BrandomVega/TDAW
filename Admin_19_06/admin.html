@@ -1,0 +1,345 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>System</title>
+    <link href="../materialize/css/materialize.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+
+    <!--<link rel="stylesheet" href="../css/admin.css">-->
+
+
+    <script src="../js/libs/jquery-3.6.4.min.js"></script>
+    <script src="../materialize/js/materialize.min.js"></script>
+    <script src="../js/libs/justValidate.js"></script>
+    <script src="../js/libs/sweetAlert.min.js"></script>
+
+    <script src="../js/validateNavMenu_admin.js"></script>
+    <script src="../js/filterMaterialize_admin.js"></script>
+
+    <script src="../js/addDocente.js"></script>
+    <script src="../js/deleteDocente.js"></script>
+    <script src="../js/acceso.js"></script>
+    <script src="../js/resetEncuesta.js"></script>
+</head>
+
+<body>
+
+    <div class="row">
+
+        <nav class="nav-extended">
+            <div class="nav-wrapper">
+                <a href="#" class="brand-logo">Administrador</a>
+                <a href="#" data-target="mobile-demo" class="sidenav-trigger"><i class="material-icons">menu</i></a>
+                <ul id="nav-mobile" class="right hide-on-med-and-down">
+                    <li><a href="sass.html">Sass</a></li>
+                    <li><a href="badges.html">Components</a></li>
+                    <li><a href="collapsible.html">JavaScript</a></li>
+                </ul>
+            </div>
+            <div class="nav-content">
+                <ul class="tabs tabs-transparent">
+                    <li class="tab"><a href="#encuesta" class="active">Información de la Encuesta</a></li>
+                    <li class="tab"><a href="#docente">Administrar Docentes</a></li>
+                    <li class="tab"><a href="#reportes">Reportes</a></li>
+                </ul>
+            </div>
+        </nav>
+    </div>
+
+    <div id="encuesta">
+        <div class="row">
+            <form class="col s12">
+                <div class="row">
+                    <div class="input-field col s12 m6 s6">
+                        <i class="material-icons prefix">search</i>
+                        <textarea id="icon_prefix2" class="materialize-textarea" onkeyup="myFunction()"></textarea>
+                        <label for="icon_prefix2">Filtrar</label>
+                    </div>
+                    <div class="col s12 m6 s6">
+                        <button type="button" id="reload" class="waves-effect waves-teal btn-flat">Cargar
+                            Profesores</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+        <div class="row">
+            <table id="dataSurvey" class="striped responsive-table">
+                <thead>
+                    <tr>
+                        <th>Nombre</th>
+                        <th>Departamento</th>
+                        <th>Encuesta</th>
+                        <th>Restablecer Encuesta</th>
+                        <th>Generar PDF</th>
+                    </tr>
+                </thead>
+                <!--Aqui ira el tbody dinamico-->
+            </table>
+        </div>
+    </div>
+
+    <div id="docente">
+        <div class="row">
+            <div class="row">
+                <nav class="nav-extended">
+                    <div class="nav-content ">
+                        <ul class="tabs tabs-transparent ">
+                            <li class="tab"><a href="#add" class="active">Agregar Docente</a></li>
+                            <li class="tab"><a href="#lock">Restringir Acesso</a></li>
+                            <li class="tab"><a href="#delete">Eliminar Docente</a></li>
+                            <li class="tab"><a href="#editar">Editar Docente</a></li>
+                        </ul>
+                    </div>
+                </nav>
+            </div>
+        </div>
+        <div id="add">
+            <!--AGREGAR PROFESOR-->
+            <main class="valign-wrapper">
+                <div class="container">
+                    <form id="addTeacher" autocomplete="off">
+                        <div class="row">
+                            <blockquote>
+                                <label>Ingrese la información del docente</label>
+                            </blockquote>
+                        </div>
+                        <div class="row">
+                            <div class="col s12 m6 l3 input-field">
+                                <i class="fas fa-user prefix"></i>
+                                <label for="nombre">Nombre</label>
+                                <input type="text" id="nombre" name="nombre">
+                            </div>
+                            <div class="col s12 m6 l3 input-field">
+                                <i class="fas fa-users prefix"></i>
+                                <label for="primerApellido">Primer Apellido</label>
+                                <input type="text" id="primerApellido" name="primerApellido">
+                            </div>
+                            <div class="col s12 m6 l3 input-field">
+                                <i class="fas fa-users prefix"></i>
+                                <label for="segundoApellido">Segundo Apellido</label>
+                                <input type="text" id="segundoApellido" name="segundoApellido">
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col s12 m6 l5 input-field">
+                                <i class="fas fa-id-card prefix"></i>
+                                <label for="numeroEmpleado">Numero de empleado</label>
+                                <input type="text" id="numeroEmpleado" name="numeroEmpleado">
+                            </div>
+                            <div class="col s12 m6 l4 input-field">
+                                <i class="fas fa-mobile prefix"></i>
+                                <label for="claveDepto">Departamento</label>
+                                <input type="text" id="claveDepto" name="claveDepto">
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col s12 m6 l5 input-field">
+                                <i class="fas fa-at prefix"></i>
+                                <label for="correo">Correo</label>
+                                <input type="text" id="correo" name="correo">
+                            </div>
+
+                            <div class="col s12 m6 l4 input-field">
+                                <i class="fas fa-asterisk prefix"></i>
+                                <label for="contrasena">Contraseña</label>
+                                <input type="password" id="contrasena" name="contrasena">
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="s9 m4 l8">
+                                <label>
+                                    <input type="hidden" name="encuesta" value="0" />
+                                    <input type="checkbox" name="encuesta" value="1" id="encuesta"
+                                        onchange="checkboxValueChanged()">
+                                    <span>Encuesta realizada</span>
+
+                                </label>
+                            </div>
+                        </div>
+                        <div class="row left-align">
+                            <div class="s9 m4 l8">
+                                <label>
+                                    <input type="radio" value='admin' checked name="rol">
+                                    <span>Administrador </span>
+                                </label>
+                                <label>
+                                    <input type="radio" value='user' name="rol">
+                                    <span>Docente</span>
+                                </label>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col s12 m6 input-field">
+                                <button type="submit" class="btn green" style="width:100%;">Agregar docente😄</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </main>
+        </div>
+        <div id="lock">
+            <main class="valign-wrapper">
+                <div class="container">
+                    <form id="acceso_lock" autocomplete="off" method="post">
+                        <div class="row">
+                            <blockquote>
+                                <label>Ingrese el número de empleado del docente para restringir su acceso</label>
+                            </blockquote>
+                        </div>
+                        <div class="row">
+                            <div class="col s12 m6 l5 input-field">
+                                <i class="fas fa-id-card prefix"></i>
+                                <label for="numeroEmpleado">Numero de empleado</label>
+                                <input type="text" id="numeroEmpleado" name="numeroEmpleado">
+                            </div>
+                        </div>
+                        <div class="row left-align">
+                            <div class="s9 m4 l8">
+                                <label>
+                                    <input type="radio" value='0' checked name="acceso">
+                                    <span>Restringir </span>
+                                </label>
+                                <label>
+                                    <input type="radio" value='1' name="acceso">
+                                    <span>Permitir</span>
+                                </label>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col s12 m6 input-field">
+                                <button type="submit" class="btn orange" style="width:100%;">Aceptar🤨</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </main>
+        </div>
+        <div id="delete">
+            <main class="valign-wrapper">
+                <div class="container">
+                    <form id="deleteDocente" autocomplete="off">
+                        <div class="row">
+                            <blockquote>
+                                <label>Ingrese la información del docente a eliminar</label>
+                            </blockquote>
+                        </div>
+                        <div class="row">
+                            <div class="col s12 m6 l5 input-field">
+                                <i class="fas fa-id-card prefix"></i>
+                                <label for="numeroEmpleado">Numero de empleado</label>
+                                <input type="text" id="numeroEmpleado" name="numeroEmpleado">
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col s12 m6 l4 input-field">
+                                <i class="fas fa-asterisk prefix"></i>
+                                <label for="contrasena">Contraseña</label>
+                                <input type="password" id="contrasena" name="contrasena">
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col s12 m6 input-field">
+                                <button type="submit" class="btn red" style="width:100%;">Eliminar🔫</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </main>
+        </div>
+        <div id="editar">
+            <main class="valign-wrapper">
+                <div class="container">
+                    <form id="addTeacher" autocomplete="off">
+                        <div class="row">
+                            <blockquote>
+                                <label>Ingresa el Numero de Empleado del docente a editar</label>
+                            </blockquote>
+                        </div>
+                        <div class="row">
+                            <div class="col s11 m5 l3 input-field">
+                                <i class="fas fa-user prefix"></i>
+                                <label for="numeroEmpleado">Numero de empleado</label>
+                                <input type="text" id="numeroEmpleado" name="numeroEmpleado">
+                            </div>
+
+                        </div>
+                        <div class="row">
+                            <blockquote>
+                                <label>Ingresa la información nueva</label>
+
+                            </blockquote>
+                        </div>
+                        <div class="row">
+                            <div class="col s12 m6 l3 input-field">
+                                <i class="fas fa-user prefix"></i>
+                                <label for="nombre">Nombre</label>
+                                <input type="text" id="nombre" name="nombre">
+                            </div>
+                            <div class="col s12 m6 l3 input-field">
+                                <i class="fas fa-users prefix"></i>
+                                <label for="primerApellido">Primer Apellido</label>
+                                <input type="text" id="primerApellido" name="primerApellido">
+                            </div>
+                            <div class="col s12 m6 l3 input-field">
+                                <i class="fas fa-users prefix"></i>
+                                <label for="segundoApellido">Segundo Apellido</label>
+                                <input type="text" id="segundoApellido" name="segundoApellido">
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col s12 m6 l4 input-field">
+                                <i class="fas fa-mobile prefix"></i>
+                                <label for="claveDepto">Departamento Asignado</label>
+                                <input type="text" id="claveDepto" name="claveDepto">
+                            </div>
+                            <div class="col s12 m6 l5 input-field">
+                                <i class="fas fa-at prefix"></i>
+                                <label for="correo">Correo</label>
+                                <input type="text" id="correo" name="correo">
+                            </div>
+                        </div>
+
+
+
+                        <div class="row left-align">
+                            <div class="s9 m4 l8">
+                                <label>
+                                    <input type="radio" value='admin' checked name="rol">
+                                    <span>Administrador </span>
+                                </label>
+                                <label>
+                                    <input type="radio" value='user' name="rol">
+                                    <span>Docente</span>
+                                </label>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col s11 m3 input-field">
+                                <button type="submit" class="btn blue" style="width:100%;">Atualizar
+                                    docente🧐</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </main>
+        </div>
+
+    </div>
+
+    <div id="reportes">
+        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolore dolor dolorem natus esse in fugiat obcaecati
+            accusamus distinctio. Quas repellat non, beatae repellendus ad accusamus tempore aut error placeat sunt.</p>
+    </div>
+
+
+    <script src="../js/filter.js"></script>
+    <script src="../js/encuesta.js"></script>
+</body>
+
+</html>

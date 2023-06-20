@@ -1,0 +1,4 @@
+
+<?php
+	CONEXIÓN CON LA BASE DE DATOS
+?>
